@@ -1,5 +1,6 @@
-import { Avatar, Button, Typography } from 'antd'
 import React from 'react'
+import { Avatar, Button, Typography, Menu } from 'antd'
+import { FundOutlined, HomeOutlined, MoneyCollectOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 
 import icon from '../images/cryptocurrency.png'
@@ -13,6 +14,26 @@ const Navbar = () => {
                     <Link to="/">Cryptoverse</Link>
                 </Typography.Title>
                 {/* <Button className="menu-control-container"></Button> */}
+                <Menu theme="dark">
+                    <Menu.Item icon={<HomeOutlined />}>
+                        <Link to="/">Home</Link>
+                    </Menu.Item>
+                </Menu>
+                <Menu theme="dark">
+                    <Menu.Item icon={<FundOutlined />}>
+                        <Link to="/cryptocurrencies">Cryptocurrencies</Link>
+                    </Menu.Item>
+                </Menu>
+                <Menu theme="dark">
+                    <Menu.Item icon={<MoneyCollectOutlined />}>
+                        <Link to="/exchanges">Exchanges</Link>
+                    </Menu.Item>
+                </Menu>
+                <Menu theme="dark">
+                    <Menu.Item icon={<HomeOutlined />}>
+                        <Link to="/news">News</Link>
+                    </Menu.Item>
+                </Menu>
             </div>
         </div>
     )
