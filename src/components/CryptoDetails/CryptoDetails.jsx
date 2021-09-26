@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Cryptodetails = () => {
+const CryptoDetails = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const Cryptodetails = () => {
     )
 }
 
-export default Cryptodetails
+export default CryptoDetails
