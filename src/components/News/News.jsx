@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Select, Typography, Row, Avatar, Col, Card } from 'antd'
 import moment from 'moment'
 
@@ -10,12 +10,27 @@ const { Option } = Select
 const demoImage = 'https://img.etimg.com/thumb/msid-84014465,width-640,resizemode-4,imgsize-25637/cryptomania-all-around.jpg'
 
 const News = ({ simplified }) => {
-    const { data: cryptoNews } = useGetCryptoNewsQuery({ newsCategory: 'Cryptocurrencies', count: simplified ? 6 : 12 })
+    const [newsCategory, setNewsCategory] = useState('Cryptocurrency')
+    const { data: cryptoNews } = useGetCryptoNewsQuery({ newsCategory, count: simplified ? 6 : 12 })
 
     if(!cryptoNews?.value) return 'Loading...'
 
     return (
         <Row gutter={[ 24, 24 ]}>
+            {!simplified && (
+                <Col span={24}>
+                    <Select
+                        showSearch
+                        className="select-news"
+                        placeholder="Select a Crypto"
+                        optionFilterProp="children"
+                        onChange={(value) => console.log(value)}
+                        filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                    >
+                        <Option value="Cryptocurrency">Cryptocurrency</Option>
+                    </Select>
+                </Col>
+            )}
             {cryptoNews.value.map((news, i) => (
                 <Col xs={24} sm={12} lg={8} key={i}>
                     <Card hoverable className="news-card">
