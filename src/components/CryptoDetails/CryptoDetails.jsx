@@ -5,7 +5,8 @@ import millify from 'millify'
 import { Col, Row, Typography, Select } from 'antd'
 import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, CheckOutlined, NumberOutlined, ThunderboltOutlined } from '@ant-design/icons'
 
-import { useGetCryptoDetailsQuery } from '../../services/cryptoApi'
+import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../../services/cryptoApi'
+import LineChart from '../LineChart'
 
 const { Title, Text } = Typography
 const { Option } = Select
@@ -81,22 +82,22 @@ const CryptoDetails = () => {
                     ))}
                 </Col>
             </Col>
-        <Col className="coin-desc-link">
-        <Row className="coin-desc">
-            <Title level={3} className="coin-details-heading">What is {cryptoDetails.name}?</Title>
-            {HTMLReactParser(cryptoDetails.description)}
-        </Row>
-        <Col className="coin-links">
-            <Title level={3} className="coin-details-heading">{cryptoDetails.name} Links</Title>
-            {cryptoDetails.links?.map((link) => (
-            <Row className="coin-link" key={link.name}>
-                <Title level={5} className="link-name">{link.type}</Title>
-                <a href={link.url} target="_blank" rel="noreferrer">{link.name}</a>
-            </Row>
-            ))}
+            <Col className="coin-desc-link">
+                <Row className="coin-desc">
+                    <Title level={3} className="coin-details-heading">What is {cryptoDetails.name}?</Title>
+                    {HTMLReactParser(cryptoDetails.description)}
+                </Row>
+                <Col className="coin-links">
+                    <Title level={3} className="coin-details-heading">{cryptoDetails.name} Links</Title>
+                    {cryptoDetails.links?.map((link) => (
+                    <Row className="coin-link" key={link.name}>
+                        <Title level={5} className="link-name">{link.type}</Title>
+                        <a href={link.url} target="_blank" rel="noreferrer">{link.name}</a>
+                    </Row>
+                    ))}
+                </Col>
+            </Col>
         </Col>
-        </Col>
-    </Col>
     )
 }
 
